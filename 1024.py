@@ -69,7 +69,7 @@ class Autoreply:
         'oneCode': str(my_token)
         }
         login=self.s.post(self.loginurl,headers=self.headers,data=data)
-        with open(f"./cookie/{self.user}.txt", 'wb') as f:
+        with open(f"./{self.user}", 'wb') as f:
             pickle.dump(login.cookies, f)
         self.cookies=login.cookies
         login=login.content.decode('utf-8','ignore')
@@ -327,7 +327,7 @@ if __name__ == "__main__":
         success=None
         auto=Autoreply(userlist[count],passwordlist[count],secretlist[count])
         while success is None:
-            userCookieFile = f"./cookie/{userlist[count]}.txt"
+            userCookieFile = f"./{userlist[count]}"
             if os.path.isfile(userCookieFile):
                 with open(userCookieFile, 'rb') as f:   
                     auto.updateCookies(pickle.load(f))
